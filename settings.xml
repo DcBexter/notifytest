@@ -46,6 +46,16 @@
       <id>jcenter</id>
     </profile>
   </profiles>
+  <proxies>
+    <proxy>
+      <id>DW-Proxy</id>
+      <active>true</active>
+      <protocol>http</protocol>
+      <host>proxy.dwelle.de</host>
+      <port>8081</port>
+      <nonProxyHosts>localhost|*.dwelle.de</nonProxyHosts>
+    </proxy>
+  </proxies>
   <activeProfiles>
     <activeProfile>jcenter</activeProfile>
   </activeProfiles>

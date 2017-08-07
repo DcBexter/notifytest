@@ -170,8 +170,7 @@ public class NotifyRecorder extends Recorder
             HttpResponse response   = HTTP_CLIENT.execute( request );
             int          statusCode = response.getStatusLine().getStatusCode();
 
-            Asserts.check( statusCode == 200, String.format( "status code is %s, expected 200", statusCode ));
-            EntityUtils.consumeQuietly( notNull( response.getEntity(), "Response entity" ));
+            Asserts.check( statusCode == 204, String.format( "status code is %s, expected 204", statusCode ));
             request.releaseConnection();
         }
         catch ( Exception e )

@@ -32,6 +32,9 @@
                     <groupId>org.jenkins-ci.tools</groupId>
                     <artifactId>maven-hpi-plugin</artifactId>
                     <version>1.108</version>
+                    <configuration>
+                        <disabledTestInjection>true</disabledTestInjection>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
