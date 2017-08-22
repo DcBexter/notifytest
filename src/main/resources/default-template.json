@@ -1,4 +1,4 @@
 {
-  "content": "Jemand hat die ${env.SVN_BRANCH} branch ausgerollt.\\nSiehe: [${build.parent.displayName}](${ jenkins.rootUrl + build.url })",
+  "content": "Build ${env.BUILD_DISPLAY_NAME}! Jemand hat ${env.SVN_URL_1} in Revision ${ env.SVN_REVISION_1 } von [${build.parent.displayName}](${ jenkins.rootUrl + build.url }) ausgerollt.",
   "avatar_url": "https://wiki.jenkins.io/download/attachments/2916393/headshot.png?version=1&modificationDate=1302753947000&api=v2"
 }
