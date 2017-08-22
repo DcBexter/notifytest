@@ -43,9 +43,9 @@ import java.util.Map;
 
 public class NotifyRecorder extends Recorder
 {
-    private static final int        CONNECT_TIMEOUT         = 10000;
-    private static final int        CONNECT_REQUEST_TIMEOUT = 10000;
-    private static final int        SOCKET_TIMEOUT          = 10000;
+    private static final int        CONNECT_TIMEOUT         = 15000;
+    private static final int        CONNECT_REQUEST_TIMEOUT = 15000;
+    private static final int        SOCKET_TIMEOUT          = 15000;
     private static final HttpClient HTTP_CLIENT             = buildHttpClient();
     private static final String     JSON_FUNCTION           = loadResource( "/json.groovy" );
     private static final String     DEFAULT_TEMPLATE        = loadResource( "/default-template.json"  );
@@ -162,6 +162,7 @@ public class NotifyRecorder extends Recorder
     private void sendNotifyRequest( @Nonnull String url, @Nonnull String json )
         throws IOException
     {
+        String status = "";
         try
         {
             HttpPost request = new HttpPost( notBlank( url, "Notify URL" ));
@@ -169,14 +170,15 @@ public class NotifyRecorder extends Recorder
                                                  ContentType.create( "application/json", Consts.UTF_8 )));
             HttpResponse response   = HTTP_CLIENT.execute( request );
             int          statusCode = response.getStatusLine().getStatusCode();
+            status = response.getStatusLine().toString();
 
             Asserts.check( statusCode == 204, String.format( "status code is %s, expected 204", statusCode ));
             request.releaseConnection();
         }
         catch ( Exception e )
         {
-            throwError( String.format( "Failed to publish notify request to '%s', payload JSON was:%s%s%s",
-                                       notifyUrl, LINE, json, LINE ), e );
+            throwError( String.format( "Failed to publish notify request to '%s', payload JSON was:%s%s%s%s",
+                                       notifyUrl, LINE, json, LINE, status ), e );
         }
     }
 
